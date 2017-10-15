@@ -42,29 +42,29 @@ def add_review(request, landlord_id):
     landlord = get_object_or_404(Landlord, pk=landlord_id)
     form = ReviewForm(request.POST)
     if form.is_valid():
-   	rating = form.cleaned_data['rating']
+   	    rating = form.cleaned_data['rating']
     	comment = form.cleaned_data['comment']
     	user_name = request.user.username
     	communication = form.cleaned_data['communication']
-	rent_again = form.cleaned_data['rent_again']
-	address = form.cleaned_data['address']
-	apt_condition = form.cleaned_data['apt_condition']
-	maintenance_eff = form.cleaned_data['maintenance_eff']
+	    rent_again = form.cleaned_data['rent_again']
+	    address = form.cleaned_data['address']
+	    apt_condition = form.cleaned_data['apt_condition']
+	    maintenance_eff = form.cleaned_data['maintenance_eff']
 	review = Review()
-    	review.landlord = landlord
-    	review.user_name = user_name
-    	review.rating = rating
-    	review.comment = comment
+    review.landlord = landlord
+    review.user_name = user_name
+    review.rating = rating
+    review.comment = comment
 	review.apt_condition = apt_condition
 	review.communication = communication
 	review.rent_again = rent_again
 	review.address = address
 	review.apt_condition = apt_condition
 	review.maintenance_eff = maintenance_eff
-    	review.pub_date = datetime.datetime.now()
-    	review.save()
+    review.pub_date = datetime.datetime.now()
+    review.save()
 
-    	return HttpResponseRedirect(reverse('reviews:landlord_detail', args=(landlord.id,)))
+    return HttpResponseRedirect(reverse('reviews:landlord_detail', args=(landlord.id,)))
     return render(request, 'reviews/landlord_detail.html', {'landlord': landlord, 'form': form})
 
 

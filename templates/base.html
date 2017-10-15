@@ -1,0 +1,38 @@
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block bootstrap3_content %}
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'reviews:index' %}">FlyTheCoop</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'reviews:review_list' %}">Landlord Reviews</a></li>
+                <li><a href="{% url 'reviews:landlord_list' %}">Rate your Landlord</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'reviews:user_review_list' user.username %}">Hello {{ user.username }}</a></li>
+                <li><a href="{% url 'auth:logout' %}"><span class="glyphicon glyphicon-user"> Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'auth:login' %}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+                <li><a href="/accounts/register">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+
+
+
+    <h1>{% block title %}(no title){% endblock %}</h1>
+
+    {% bootstrap_messages %}
+
+    {% block content %}(no content){% endblock %}
+</div>
+
+{% endblock %}

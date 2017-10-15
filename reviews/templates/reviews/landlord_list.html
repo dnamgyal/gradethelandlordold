@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<h2>Landlord list</h2>
+{% endblock %}
+
+{% block content %}
+{% if landlord_list %}
+<div class="container">
+    {% for landlord in landlord_list %}
+    <div class="row">
+      <div class="col col-3">
+        <h4><a href="{% url 'reviews:landlord_detail' landlord.id %}">
+        {{ landlord.name }}
+      </a></h4></div>
+      <div class="col col-9">
+        <h5>{%if landlord.review_set.count > 0 %}{{ landlord.review_set.count }} reviews | Average rating: {{ landlord.average_rating | floatformat }} {% else %} No rating {% endif %}</h5>
+    </div>
+      </div>
+    {% endfor %}
+
+</div>
+{% else %}
+    <p>No landlords are available.</p>
+{% endif %}
+{% endblock %}

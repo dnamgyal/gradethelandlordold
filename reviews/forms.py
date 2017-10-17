@@ -1,9 +1,14 @@
 from django.forms import ModelForm, Textarea
-from reviews.models import Review
+from reviews.models import Review, Landlord
 
 class ReviewForm(ModelForm):
 	class Meta:
 		model = Review
-		fields = ['rating', 'communication', 'address', 'apt_condition', 'rent_again','maintenance_eff', 'comment']
-		widgets = {
-			'comment': Textarea(attrs={'cols': 50, 'rows': 15})}
+		fields = ['address','rating',  'apt_condition', 'communication','maintenance_eff', 'rent_again', 'comment']
+ 		widgets = {
+            'comment': Textarea(),
+        }
+class AddLandlord(ModelForm):
+	class Meta:
+		model = Landlord
+		fields = ['name']

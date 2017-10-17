@@ -1,1 +1,1 @@
-web: gunicorn landlord --log-file -
+web: gunicorn wsgi.landlord-log-file -

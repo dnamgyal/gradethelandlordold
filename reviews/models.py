@@ -4,7 +4,6 @@ import numpy as np
 
 class Landlord(models.Model):
     name = models.CharField(max_length=200)
-    phone = models.CharField()
 
     def average_rating(self):
         all_ratings = map(lambda x: x.rating, self.review_set.all())

@@ -6,7 +6,7 @@ class ReviewAdmin(admin.ModelAdmin):
     model = Review
     list_display = ('landlord', 'rating', 'user_name', 'comment','communication', 'rent_again', 'address', 'apt_condition', 'maintenance_eff', 'pub_date')
     list_filter = ['pub_date', 'user_name']
-    search_fields = ['comment']
-    
+    search_fields = ['comment','address']
+
 admin.site.register(Landlord)
 admin.site.register(Review, ReviewAdmin)

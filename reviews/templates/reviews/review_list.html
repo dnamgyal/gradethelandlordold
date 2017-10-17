@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+</head>
 
 {% block title %}
 <h2>Latest reviews</h2>
@@ -9,7 +14,7 @@
 {% for review in latest_review_list %}
 <div class="col-sm-6">
   <div class="row">
-    <div class="card card-outline-info mb-3" style="border-color: #333;">
+    <div class="card">
       <div class="card-block">
         <h4 class="card-title"><a href="{% url 'reviews:landlord_detail' review.landlord.id %}">{{review.landlord}}</a></h4>
         <h6 class="card-subtitle mb-2 text-muted">rated {{review.rating}} of 5 by <a href="{% url 'reviews:user_review_list' review.user_name %}" >{{ review.user_name }}</a> on {{review.pub_date}}</h6>
@@ -23,10 +28,10 @@
           <p class="card-text"><strong>Comment:</strong> {{ review.comment }}  </div>
           </div>
         </div>
+
         <hr />
       </div>
       {% endfor %}
-
       {% else %}
       <p>No reviews are available.</p>
       {% endif %}

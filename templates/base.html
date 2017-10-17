@@ -1,12 +1,18 @@
 {% load bootstrap3 %}
+{% load staticfiles %}
 
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
+<head>
+    <title>GradetheLandlord</title>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+
 {% block bootstrap3_content %}
     <nav class="navbar navbar-default">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'reviews:index' %}">FlyTheCoop</a>
+            <a class="navbar-brand" href="{% url 'reviews:index' %}">GradetheLandlord</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -16,7 +22,7 @@
             <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
                 <li><a href="{% url 'reviews:user_review_list' user.username %}">Hello {{ user.username }}</a></li>
-                <li><a href="{% url 'auth:logout' %}"><span class="glyphicon glyphicon-user"> Logout</a></li>
+                <li><a href="{% url 'auth:logout' %}"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
                 {% else %}
                 <li><a href="{% url 'auth:login' %}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
                 <li><a href="/accounts/register">Register</a></li>

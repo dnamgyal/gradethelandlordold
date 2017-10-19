@@ -1,12 +1,12 @@
 {% load bootstrap3 %}
-{% load staticfiles %}
-
 {% bootstrap_css %}
 {% bootstrap_javascript %}
+{% load static %}
 
 <head>
     <title>GradetheLandlord</title>
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/base.css' %}" />
+
 </head>
 
 {% block bootstrap3_content %}
@@ -31,8 +31,6 @@
         </div>
     </nav>
     <div class="container">
-
-
 
     <h1>{% block title %}(no title){% endblock %}</h1>
 

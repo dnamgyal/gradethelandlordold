@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<h2>Your search results</h2>
+{% endblock %}
+
+{% block content %}
+        <p>You searched for: <strong>{{ query }}</strong></p>
+
+        {% if landlords %}
+            <p>Found {{ landlords|length }} landlord{{ landlords|pluralize }}.</p>
+            <ul>
+                {% for landlord in landlords %}
+                <li>{{ landlord.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No landlords matched your search criteria.</p>
+        {% endif %}
+{% endblock %}

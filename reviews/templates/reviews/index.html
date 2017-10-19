@@ -9,11 +9,10 @@
 
 
 <div class="row">
-  <form class="form-horizontal">
-    <div class="form-group form-group-lg">
-        <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Enter landlord or address">
-    </div>
-  </form>
+  <form action="{% url 'reviews:search' %}" method="get">
+        <input type="text" name="q">
+        <input type="submit" value="Search">
+    </form>
 </div>
 <div class="row">
   <div class="col-sm-6">

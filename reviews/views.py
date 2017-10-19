@@ -4,6 +4,8 @@ from django.core.urlresolvers import reverse
 from .models import Review, Landlord
 from .forms import ReviewForm, AddLandlord
 import datetime
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
+from django.views.generic import ListView
 
 from django.contrib.auth.decorators import login_required
 
@@ -83,6 +85,17 @@ def add_landlord(request):
             return HttpResponseRedirect(reverse('reviews:landlord_list'))
     landlord = get_object_or_404(Landlord, pk=count)
     return render(request, 'reviews/landlord_detail.html', {'landlord': landlord, 'form': form})
+
+
+def search(request):
+    if 'q' in request.GET and request.GET['q']:
+        q = request.GET['q']
+        landlords = Landlord.objects.filter(name__icontains=q)
+        return render(request, 'reviews/search_result.html',
+                      {'landlords': landlords, 'query': q})
+    else:
+        return render(request, 'reviews/index.html')
+
 
 def user_review_list(request, username=None):
     if not username:

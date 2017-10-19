@@ -6,6 +6,7 @@ urlpatterns = [
 
     url(r'^review$', views.review_list, name='review_list'),
     url(r'^$', views.index, name='index'),
+    url(r'^search/$', views.search, name='search'),
     # ex: /review/5/
     url(r'^review/(?P<review_id>[0-9]+)/$', views.review_detail, name='review_detail'),
     url(r'^landlord$', views.landlord_list, name='landlord_list'),

@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'landlord.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-postgres://ckekkhwvinjefb:6b76070751059c48267b02f2d209c126cb734c28caeb1fca96a1719c18393346@ec2-107-22-173-160.compute-1.amazonaws.com:5432/d8ksur4l0e76n1
+DATABASE_URL = 'postgres://ckekkhwvinjefb:6b76070751059c48267b02f2d209c126cb734c28caeb1fca96a1719c18393346@ec2-107-22-173-160.compute-1.amazonaws.com:5432/d8ksur4l0e76n1'
 DATABASES = {
     'default': dj_database_url.config(default=DATABASE_URL)
 }

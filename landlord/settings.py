@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')g@^(l6+_uc*ckf%rj2i+89v^4^r3k!$l76husfgc74nk1#&g+'
-
+#SECRET_KEY = ')g@^(l6+_uc*ckf%rj2i+89v^4^r3k!$l76husfgc74nk1#&g+'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', ')g@^(l6+_uc*ckf%rj2i+89v^4^r3k!$l76husfgc74nk1#&g+')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+#DEBUG = True
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True))
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -55,6 +55,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 )
+
+X_FRAME_OPTIONS = 'DENY'
 
 ROOT_URLCONF = 'landlord.urls'
 
@@ -108,7 +110,13 @@ USE_L10N = True
 USE_TZ = True
 
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),
+)
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
